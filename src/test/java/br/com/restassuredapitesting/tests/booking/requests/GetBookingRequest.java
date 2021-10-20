@@ -10,7 +10,7 @@ public class GetBookingRequest {
 
         return given()
                 .when()
-                .get("https://treinamento-api.herokuapp.com/booking");
+                .get("booking");
 
 
 
