@@ -1,6 +1,7 @@
 package br.com.restassuredapitesting.tests.auth.requests;
 
 import br.com.restassuredapitesting.tests.auth.requests.payloads.AuthPayloads;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 
@@ -9,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class PostAuthRequest {
     AuthPayloads authPayloads = new AuthPayloads();
-
+    @Step("Retorna o Token")
     public Response tokenReturn(){
 
         return given()
@@ -19,6 +20,7 @@ public class PostAuthRequest {
                 .post("auth");
     }
 
+    @Step("Busca o Token")
     public String getToken(){
         return "token="+this.tokenReturn()
                 .then()
