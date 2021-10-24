@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 public class PutBookingRequest {
     BookingPayloads bookingPayloads = new BookingPayloads();
 
-    @Step("Atualiza uma eserva especifica com o parametro token")
+    @Step("Atualiza uma reserva especifica com o parametro token")
     public Response upDateBookingToken(int id, String token){
 
         return given()
