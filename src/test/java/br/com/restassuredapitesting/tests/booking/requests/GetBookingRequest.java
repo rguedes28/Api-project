@@ -23,7 +23,19 @@ public class GetBookingRequest {
 
 
     }
+    @Step("Retorna os Id's da especifico de uma reserva")
+    public Response bookingReturnIdsEspecifico(){
 
+        return given()
+                .when()
+                .get("booking/26");
+
+
+
+    }
+
+
+    @Step("Retorna os Id's pelo filtro de primeiro nome")
    public Response bookingReturbIdPeloPrimeiroNome(){
 
         return given()
@@ -32,7 +44,7 @@ public class GetBookingRequest {
                 .get("booking?firstname=Sally");
 
     }
-
+    @Step("Retorna os Id's pelo filtro de ultimo nome")
     public Response bookingReturbIdPeloUltimoNome(){
 
         return given()
@@ -41,7 +53,7 @@ public class GetBookingRequest {
                 .get("booking?lastname=Brown");
 
     }
-
+    @Step("Retorna os Id's pela data de checkin")
     public Response bookingReturbIdPeloCheckin(){
 
         return given()
@@ -50,7 +62,7 @@ public class GetBookingRequest {
                 .get("booking?checkin=2018-04-21");
 
     }
-
+    @Step("Retorna os Id's pela data de checkput")
     public Response bookingReturbIdPeloCheckout(){
 
         return given()
@@ -59,7 +71,7 @@ public class GetBookingRequest {
                 .get("booking?checkout=2018-04-21");
 
     }
-
+    @Step("Retorna os Id's pela data de checkin e checkout")
     public Response bookingReturbIdPeloCheckin_Checkout(String chkin, String data1,
                                                     String chkout, String data2) {
         return given()
@@ -68,7 +80,7 @@ public class GetBookingRequest {
                 .when()
                 .get("booking");
     }
-
+    @Step("Retorna os Id's prlo primeiro nome e pelas datas de checkin e checkout")
     public Response bookingReturbIdPeloPrimeiroNome_Checkin_Checkout(String primeiroNome, String pnome, String chkin, String data1,
                                                         String chkout, String data2) {
         return given()

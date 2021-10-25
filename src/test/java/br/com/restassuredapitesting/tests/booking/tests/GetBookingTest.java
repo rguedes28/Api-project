@@ -11,11 +11,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.hamcrest.Matchers;
-import org.junit.Assert;
+
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -54,6 +50,19 @@ public class GetBookingTest extends BaseTest {
                 .then()
                 .statusCode(200)
                 .body(matchesJsonSchema(new File(Utils.getSchemaBasePath("booking","bookings"))));
+    }
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class, AccptanceTests.class})
+    @DisplayName("Listar ids pelo primeiro nome")
+    public void validaIdPeloidEspecificoDaReserva(){
+
+        getBookingRequest.bookingReturnIdsEspecifico()
+                .then()
+                .statusCode(200)
+                .log().all()
+                .body("firstname",equalTo("Cristiano") );
+
     }
 
     @Test
