@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 public class GetBookingRequest {
 
     PostAuthRequest postAuthRequest = new PostAuthRequest();
+    PostBookingRequest postBookingRequest = new PostBookingRequest();
 
     @Step("Retorna os Id's da listagem de reservas")
     public Response bookingReturnIds(){
@@ -24,11 +25,11 @@ public class GetBookingRequest {
 
     }
     @Step("Retorna os Id's da especifico de uma reserva")
-    public Response bookingReturnIdsEspecifico(){
+    public Response bookingReturnIdsEspecifico( int idr){
 
         return given()
                 .when()
-                .get("booking/26");
+                .get("booking/"+idr);
 
 
 
@@ -36,39 +37,43 @@ public class GetBookingRequest {
 
 
     @Step("Retorna os Id's pelo filtro de primeiro nome")
-   public Response bookingReturbIdPeloPrimeiroNome(){
+   public Response bookingReturbIdPeloPrimeiroNome(String name1){
 
         return given()
                 .header("Content-Type", "application/json")
                 .when()
-                .get("booking?firstname=Sally");
+                .log().all()
+                .get("booking?firstname=" + name1);
 
     }
     @Step("Retorna os Id's pelo filtro de ultimo nome")
-    public Response bookingReturbIdPeloUltimoNome(){
+    public Response bookingReturbIdPeloUltimoNome(String name2){
 
         return given()
                 .header("Content-Type", "application/json")
                 .when()
-                .get("booking?lastname=Brown");
+                .log().all()
+                .get("booking?lastname="+name2);
 
     }
     @Step("Retorna os Id's pela data de checkin")
-    public Response bookingReturbIdPeloCheckin(){
+    public Response bookingReturbIdPeloCheckin(String date1){
 
         return given()
                 .header("Content-Type", "application/json")
                 .when()
-                .get("booking?checkin=2018-04-21");
+                .log().all()
+                .get("booking?checkin="+date1);
 
     }
     @Step("Retorna os Id's pela data de checkput")
-    public Response bookingReturbIdPeloCheckout(){
+    public Response bookingReturbIdPeloCheckout(String date2){
 
         return given()
                 .header("Content-Type", "application/json")
                 .when()
-                .get("booking?checkout=2018-04-21");
+                .log().all()
+                .get("booking?checkout="+date2);
 
     }
     @Step("Retorna os Id's pela data de checkin e checkout")
@@ -80,7 +85,7 @@ public class GetBookingRequest {
                 .when()
                 .get("booking");
     }
-    @Step("Retorna os Id's prlo primeiro nome e pelas datas de checkin e checkout")
+    @Step("Retorna os Id's pelo primeiro nome e pelas datas de checkin e checkout")
     public Response bookingReturbIdPeloPrimeiroNome_Checkin_Checkout(String primeiroNome, String pnome, String chkin, String data1,
                                                         String chkout, String data2) {
         return given()

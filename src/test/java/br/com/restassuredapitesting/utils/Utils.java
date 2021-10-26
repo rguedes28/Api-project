@@ -1,5 +1,8 @@
 package br.com.restassuredapitesting.utils;
 
+
+
+
 public class Utils {
 
     public static String getSchemaBasePath(String pack, String nameSchema){
@@ -10,5 +13,10 @@ public class Utils {
                 + nameSchema
                 +".json";
     }
+
+
+
+
+
 
 }

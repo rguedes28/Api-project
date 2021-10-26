@@ -32,8 +32,8 @@ public class BookingPayloads {
         bookingDates.put("checkin", "2021-04-14");
         bookingDates.put("checkout", "2021-05-14");
 
-        payloadist.put("firstname", faker.yoda());
-        payloadist.put("lastname", faker.hipster());
+        payloadist.put("firstname", faker.pokemon().name());
+        payloadist.put("lastname", faker.funnyName().name());
         payloadist.put("totalprice", 111);
         payloadist.put("depositpaid", true);
         payloadist.put("bookingdates", bookingDates);
