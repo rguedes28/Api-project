@@ -25,35 +25,46 @@ public class GetBookingRequest {
 
     }
     @Step("Retorna os Id's da especifico de uma reserva")
-    public Response bookingReturnIdsEspecifico( int idr){
+    public Response bookingReturnReservaEspecifica( String name){
 
         return given()
                 .when()
-                .get("booking/"+idr);
+                .log().all()
+                .get("booking?firstname="+name);
 
 
+
+    }
+    @Step("retorna a vusca por id especifico")
+    public Response bookingIdEspecifico(int idr){
+
+        return given()
+                .when()
+                .get("booking/"+ idr);
 
     }
 
 
     @Step("Retorna os Id's pelo filtro de primeiro nome")
-   public Response bookingReturbIdPeloPrimeiroNome(String name1){
+   public Response bookingReturbIdPeloPrimeiroNome(String firstN, String name1){
 
         return given()
+                .queryParams(firstN, name1)
                 .header("Content-Type", "application/json")
                 .when()
                 .log().all()
-                .get("booking?firstname=" + name1);
+                .get("booking");
 
     }
     @Step("Retorna os Id's pelo filtro de ultimo nome")
-    public Response bookingReturbIdPeloUltimoNome(String name2){
+    public Response bookingReturbIdPeloUltimoNome(String lastN, String name2){
 
         return given()
+                .queryParams(lastN, name2)
                 .header("Content-Type", "application/json")
                 .when()
                 .log().all()
-                .get("booking?lastname="+name2);
+                .get("booking");
 
     }
     @Step("Retorna os Id's pela data de checkin")
@@ -77,22 +88,32 @@ public class GetBookingRequest {
 
     }
     @Step("Retorna os Id's pela data de checkin e checkout")
-    public Response bookingReturbIdPeloCheckin_Checkout(String chkin, String data1,
-                                                    String chkout, String data2) {
+    public Response bookingReturbIdPeloCheckout_Checkout(String data) {
         return given()
-                .queryParams(chkin, data1, chkout, data2).log().all()
+
+                .log().all()
                 .header("Content-Type", "application/json")
                 .when()
-                .get("booking");
+                .get("booking?checkout="+data+"&checkout="+data);
     }
     @Step("Retorna os Id's pelo primeiro nome e pelas datas de checkin e checkout")
     public Response bookingReturbIdPeloPrimeiroNome_Checkin_Checkout(String primeiroNome, String pnome, String chkin, String data1,
                                                         String chkout, String data2) {
         return given()
-                .queryParams(primeiroNome, pnome, chkin, data1, chkout, data2).log().all()
+                .queryParams(primeiroNome, pnome, chkin, data1, chkout, data2)
+                .log().all()
                 .header("Content-Type", "application/json")
                 .when()
                 .get("booking");
+    }
+    @Step("Retorna status code 500 por filtro mal formatado")
+    public Response statusCode500porFiltroMalFormayado(String data) {
+        return given()
+
+
+                .header("Content-Type", "application/json")
+                .when()
+                .get("booking?checkin="+data);
     }
 
 

@@ -1,4 +1,20 @@
 -------------------------------------------------------------------------------
 Test set: br.com.restassuredapitesting.runners.AllTests
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.297 s - in br.com.restassuredapitesting.runners.AllTests
+Tests run: 19, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 44.257 s <<< FAILURE! - in br.com.restassuredapitesting.runners.AllTests
+validaidPeloPrimeiroNome_DataDeCheckin_CheckoutDaReserva(br.com.restassuredapitesting.tests.booking.tests.GetBookingTest)  Time elapsed: 4.487 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+JSON path size() doesn't match.
+Expected: a value greater than <0>
+  Actual: 0
+
+	at br.com.restassuredapitesting.tests.booking.tests.GetBookingTest.validaidPeloPrimeiroNome_DataDeCheckin_CheckoutDaReserva(GetBookingTest.java:188)
+
+tentarExcluirUmaReservaQueNaoExisteComToken(br.com.restassuredapitesting.tests.booking.tests.DeleteBookingTest)  Time elapsed: 1.788 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <404> but was <405>.
+
+	at br.com.restassuredapitesting.tests.booking.tests.DeleteBookingTest.tentarExcluirUmaReservaQueNaoExisteComToken(DeleteBookingTest.java:48)
+

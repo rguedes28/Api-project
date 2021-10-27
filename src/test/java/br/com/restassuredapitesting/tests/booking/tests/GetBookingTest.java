@@ -4,6 +4,7 @@ import br.com.restassuredapitesting.base.BaseTest;
 import br.com.restassuredapitesting.suites.AccptanceTests;
 import br.com.restassuredapitesting.suites.AllTests;
 import br.com.restassuredapitesting.suites.ContractTests;
+import br.com.restassuredapitesting.suites.E2eTests;
 import br.com.restassuredapitesting.tests.booking.requests.GetBookingRequest;
 
 import br.com.restassuredapitesting.tests.booking.requests.PostBookingRequest;
@@ -51,36 +52,38 @@ public class GetBookingTest extends BaseTest {
         getBookingRequest.bookingReturnIds()
                 .then()
                 .statusCode(200)
+                .log().all()
                 .body(matchesJsonSchema(new File(Utils.getSchemaBasePath("booking","bookings"))));
     }
-
     @Test
     @Severity(SeverityLevel.BLOCKER)
     @Category({AllTests.class,ContractTests.class})
     @DisplayName("Garantir o schema de retorno da listagem de reserva")
-    public void validaSchemaDeReservaEspecifica(){
+    public void validaSchemaDaListagemDeReservaEspecifica(){
+        int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
+        String fName = getBookingRequest.bookingIdEspecifico(idReserva).then().statusCode(200).extract().path("firstname");
 
-        getBookingRequest.bookingReturbIdPeloPrimeiroNome_Checkin_Checkout("firstname", "Reserters",
-                        "checkin", "2021-10-22", "checkout", "2021-10-31")
+        getBookingRequest.bookingIdEspecifico(idReserva)
                 .then()
                 .statusCode(200)
                 .log().all()
-                .body(matchesJsonSchema(new File(Utils.getSchemaBasePath("booking","bookings"))));
+                .body(matchesJsonSchema(new File(Utils.getSchemaBasePath("booking","bookingsesp"))));
+
     }
+
 
 
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Category({AllTests.class, AccptanceTests.class})
-    @DisplayName("Validar pelo id especifico")
-    public void validaIdPeloidEspecificoDaReserva( ){
+    @DisplayName("Validar uma reserva especifica")
+    public void validarUmaReservaEspeciifica( ){
         int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
-        String fName = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().statusCode(200).extract().path("firstname");
-        getBookingRequest.bookingReturnIdsEspecifico(idReserva)
+        String fName = getBookingRequest.bookingIdEspecifico(idReserva).then().statusCode(200).extract().path("firstname");
+        getBookingRequest.bookingReturnReservaEspecifica(fName)
                 .then()
                 .statusCode(200)
-                .log().all()
-                .body("firstname", is(fName));
+                .body("size()", greaterThan(0));
 
     }
 
@@ -90,14 +93,14 @@ public class GetBookingTest extends BaseTest {
     @DisplayName("Listar ids pelo primeiro nome")
     public void validaIdPeloPrimeiroNomeDaReserva(){
         int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
-        String fName = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then()
+        String fName = getBookingRequest.bookingIdEspecifico(idReserva).then()
                         .statusCode(200).extract().path("firstname");
 
-        getBookingRequest.bookingReturbIdPeloPrimeiroNome(fName)
+        getBookingRequest.bookingReturbIdPeloPrimeiroNome("firstname", fName)
                 .then()
                 .statusCode(200)
                 .log().all()
-                .body("bookingid", notNullValue());
+                .body("size()", greaterThan(0));
 
     }
 
@@ -107,13 +110,13 @@ public class GetBookingTest extends BaseTest {
     @DisplayName("Listar ids pelo Ultimo nome")
     public void validaIdPeloUltimoNomeDaReserva(){
         int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
-        String lName = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().extract().path("lastname");
+        String lName = getBookingRequest.bookingIdEspecifico(idReserva).then().extract().path("lastname");
 
-        getBookingRequest.bookingReturbIdPeloUltimoNome(lName)
+        getBookingRequest.bookingReturbIdPeloUltimoNome("lastname", lName)
                 .then()
                 .statusCode(200)
-                .log().all()
-                .body("bookingid", notNullValue());
+                .body("size()", greaterThan(0));
+
 
     }
 
@@ -123,12 +126,11 @@ public class GetBookingTest extends BaseTest {
     @DisplayName("Listar ids pela data de checkin")
     public void validaidPelaDataDeChekinDaReserva(){
         int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
-        String chkin = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().extract().path("bookingdates.checkin");
+        String chkin = getBookingRequest.bookingIdEspecifico(idReserva).then().extract().path("bookingdates.checkin");
         getBookingRequest.bookingReturbIdPeloCheckin(chkin)
                 .then()
                 .statusCode(200)
-                .log().all()
-                .body("[0].bookingid", notNullValue());
+                .body("size()", greaterThan(0));
 
 
     }
@@ -139,12 +141,12 @@ public class GetBookingTest extends BaseTest {
     @DisplayName("Listar ids pela data de checkout")
     public void validaidPelaDataDeChekoutDaReserva(){
         int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
-        String chkout = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().extract().path("bookingdates.checkout");
+        String chkout = getBookingRequest.bookingIdEspecifico(idReserva).then().extract().path("bookingdates.checkout");
         getBookingRequest.bookingReturbIdPeloCheckout(chkout)
                 .then()
                 .statusCode(200)
                 .log().all()
-                .body("[0].bookingid", notNullValue());
+                .body("size()", greaterThan(0));
 
 
     }
@@ -153,35 +155,21 @@ public class GetBookingTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Category({AllTests.class, AccptanceTests.class})
     @DisplayName("Listar ids pela data de checkin e checkout")
-    public void validaidPelaDataDeCheckin_CheckoutDaReserva(){
+    public void validaidPelaDataDeCheckot_CheckoutDaReserva(){
         int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
-        String chkin = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().extract().path("bookingdates.checkin");
-        String chkout = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().extract().path("bookingdates.checkout");
+        String chkout1 = getBookingRequest.bookingIdEspecifico(idReserva).then().extract().path("bookingdates.checkout");
 
-        getBookingRequest.bookingReturbIdPeloCheckin_Checkout("checkin", chkin,
-                        "checkout", chkout)
+
+        getBookingRequest.bookingReturbIdPeloCheckout_Checkout(chkout1)
                 .then()
-                .statusCode(200)
-                .log().all()
-                .body("bookingid", notNullValue());
+                .statusCode(500);
+
+
+
 
 
     }
-   /* @Test
-    public void testtester(){
-       //RestAssured.baseURI ="https://treinamento-api.herokuapp.com/booking";
-        RequestSpecification request = RestAssured.given();
 
-        Response response = request.queryParam("checkin", "2018-01-01")
-                .queryParam("checkout", "2019-01-01")
-                .log().all()
-                .get("https://treinamento-api.herokuapp.com/booking");
-
-
-        String jsonString = response.asString();
-        System.out.println(response.getStatusCode());
-        Assert.assertEquals(jsonString.contains("bookingid"), true);
-    }*/
 
     @Test
     @Severity(SeverityLevel.NORMAL)
@@ -189,15 +177,30 @@ public class GetBookingTest extends BaseTest {
     @DisplayName("Listar ids pelo Primeiro nome, data de checkin e checkout")
     public void validaidPeloPrimeiroNome_DataDeCheckin_CheckoutDaReserva(){
         int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
-        String chkin = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().extract().path("bookingdates.checkin");
-        String chkout = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().extract().path("bookingdates.checkout");
-        String fName = getBookingRequest.bookingReturnIdsEspecifico(idReserva).then().extract().path("firstname");
+        String chkin = getBookingRequest.bookingIdEspecifico(idReserva).then().extract().path("bookingdates.checkin");
+        String chkout = getBookingRequest.bookingIdEspecifico(idReserva).then().extract().path("bookingdates.checkout");
+        String fName = getBookingRequest.bookingIdEspecifico(idReserva).then().extract().path("firstname");
         getBookingRequest.bookingReturbIdPeloPrimeiroNome_Checkin_Checkout("firstname", fName,
                         "checkin", chkin, "checkout", chkout)
                 .then()
                 .statusCode(200)
                 .log().all()
-                .body("bookingid", notNullValue());
+                .body("size()", greaterThan(0));
+
+
+
+    }
+    @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Category({AllTests.class, E2eTests.class})
+    @DisplayName("Visyalizar um 500 por filtro mal formatado")
+    public void validarstatuscode500PorfiltroMalFormatado(){
+
+        getBookingRequest.statusCode500porFiltroMalFormayado("20140225")
+                .then()
+                .statusCode(500);
+
+
 
 
     }

@@ -21,4 +21,17 @@ public class PutBookingRequest {
                 .put("booking/"+ id);
 
     }
+    @Step("Atualiza uma reserva especifica com o parametro token")
+    public Response upDateBookingBasicAuth(int id){
+
+        return given()
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .header("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
+                .when()
+                .log().all()
+                .body(bookingPayloads.payloadInsertBooking().toString())
+                .put("booking/"+ id);
+
+    }
 }
