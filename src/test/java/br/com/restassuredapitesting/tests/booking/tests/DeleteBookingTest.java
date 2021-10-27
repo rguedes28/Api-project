@@ -6,24 +6,22 @@ import br.com.restassuredapitesting.suites.AllTests;
 import br.com.restassuredapitesting.suites.E2eTests;
 import br.com.restassuredapitesting.tests.auth.requests.PostAuthRequest;
 import br.com.restassuredapitesting.tests.booking.requests.DeleteBookingRequest;
-import br.com.restassuredapitesting.tests.booking.requests.GetBookingRequest;
 import br.com.restassuredapitesting.tests.booking.requests.PostBookingRequest;
-import br.com.restassuredapitesting.tests.booking.requests.PutBookingRequest;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import static org.hamcrest.Matchers.greaterThan;
-
-
+@Feature("Feature - Exclusao de Reservas")
 public class DeleteBookingTest extends BaseTest {
+    //Classes utilizadas
     PostBookingRequest postBookingRequest = new PostBookingRequest();
     PostAuthRequest postAuthRequest = new PostAuthRequest();
-
     DeleteBookingRequest deleteBookingRequest = new DeleteBookingRequest();
 
+    //Inicio dos testes
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Category({AllTests.class, AccptanceTests.class})
@@ -33,10 +31,10 @@ public class DeleteBookingTest extends BaseTest {
         deleteBookingRequest.excluirReserva(idReserva, postAuthRequest.getToken())
 
                 .then()
-                .statusCode(201)
-                .log().all();
+                .statusCode(201);
 
     }
+
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Category({AllTests.class, E2eTests.class})
@@ -45,20 +43,20 @@ public class DeleteBookingTest extends BaseTest {
         deleteBookingRequest.tentarexcluirReservaQueNaoExiste(postAuthRequest.getToken())
 
                 .then()
-                .statusCode(404)
-                .log().all();
+                .statusCode(404);
+
     }
 
     @Test
-    @Severity(SeverityLevel.BLOCKER)
+    @Severity(SeverityLevel.NORMAL)
     @Category({AllTests.class, E2eTests.class})
-    @DisplayName("Excluir uma reserva Sem Token")
+    @DisplayName("Tentar excluir uma reserva Sem Token")
     public void tentarExcluirUmaReservaSemToken() {
         int idReserva = postBookingRequest.insertBooking().then().statusCode(200).extract().path("bookingid");
         deleteBookingRequest.tentarexcluirReservaSemToken(idReserva)
                 .then()
-                .statusCode(403)
-                .log().all();
+                .statusCode(403);
+
     }
 }
 

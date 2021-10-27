@@ -1,11 +1,13 @@
 package br.com.restassuredapitesting.tests.booking.payloads;
 
 import com.github.javafaker.Faker;
+import io.qameta.allure.Feature;
 import org.json.JSONObject;
 
-import java.util.Random;
-
+@Feature("Festure - Payloads")
 public class BookingPayloads {
+
+    //pauload para alterar booking
     public static JSONObject payloadValidBooking() {
         JSONObject payload = new JSONObject();
         JSONObject bookingDates = new JSONObject();
@@ -21,10 +23,9 @@ public class BookingPayloads {
         payload.put("additionalneeds", "Breakfast");
 
         return payload;
-
-
     }
 
+    //Payload para inserir booking
     public static JSONObject payloadInsertBooking() {
 
         Faker faker = new Faker();
@@ -32,15 +33,8 @@ public class BookingPayloads {
         JSONObject payloadist = new JSONObject();
         JSONObject bookingDates = new JSONObject();
 
-        Random random = new Random();
-        int mouth = random.nextInt(12);
-        int days = random.nextInt(30);
-
         bookingDates.put("checkin", "2020-05-21");
         bookingDates.put("checkout", "2021-05-21");
-
-        //bookingDates.put("checkin", "2020-"+mouth+"-"+days);
-        //bookingDates.put("checkout", "2021-"+mouth+"-"+days);
 
         payloadist.put("firstname", faker.dog().name());
         payloadist.put("lastname", faker.funnyName().name());
@@ -50,7 +44,39 @@ public class BookingPayloads {
         payloadist.put("additionalneeds", "Breakfast");
 
         return payloadist;
-
-
     }
+
+    //Payload com itens a mais
+    public static JSONObject payloadMoreItensBooking() {
+        JSONObject payloadadd = new JSONObject();
+        JSONObject bookingDates = new JSONObject();
+
+        bookingDates.put("checkin", "2018-01-01");
+        bookingDates.put("checkout", "2019-01-01");
+
+        payloadadd.put("firstname", "Jorge");
+        payloadadd.put("lastname", "Miguel");
+        payloadadd.put("totalprice", 111);
+        payloadadd.put("depositpaid", true);
+        payloadadd.put("bookingdates", bookingDates);
+        payloadadd.put("additionalneeds", "Breakfast");
+        payloadadd.put("number roons", 2);
+        payloadadd.put("carrental", "yes");
+
+        return payloadadd;
+    }
+
+    //Payload invalido
+    public static JSONObject payloadInvalidBooking() {
+        JSONObject payloadiv = new JSONObject();
+        JSONObject bookingDates = new JSONObject();
+
+        bookingDates.put("checkin", "2018-01-01");
+        bookingDates.put("checkout", "2019-01-01");
+
+        payloadiv.put("bookingdates", bookingDates);
+
+        return payloadiv;
+    }
+
 }

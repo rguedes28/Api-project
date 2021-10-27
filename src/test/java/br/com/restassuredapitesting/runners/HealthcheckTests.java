@@ -9,6 +9,7 @@ import org.junit.runners.Suite;
 @RunWith(Categories.class)
 @Categories.IncludeCategory(br.com.restassuredapitesting.suites.HealthcheckTests.class)
 @Suite.SuiteClasses({
+        HealthcheckTests.class,
         GetPingTest.class
 
 

@@ -7,13 +7,8 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.response.Response;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-
-
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.greaterThan;
 
 @Feature("Feature - api online")
 public class GetPingTest extends BaseTest {
@@ -30,6 +25,5 @@ public class GetPingTest extends BaseTest {
             .statusCode(201);
 
     }
-
 
 }

@@ -10,7 +10,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-
 import static org.hamcrest.core.IsNull.notNullValue;
 
 @Feature("Feature - Autenticacao de Usuario")
@@ -18,6 +17,7 @@ public class PostAuthTest extends BaseTest {
 
     PostAuthRequest postAuthRequest = new PostAuthRequest();
 
+    //Inicio dos testes
     @Test
     @Severity(SeverityLevel.BLOCKER)
     @Category({AllTests.class, SmokeTests.class})

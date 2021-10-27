@@ -17,9 +17,7 @@ public class DeleteBookingRequest {
                 .header("Accept", "application/json")
                 .header("Cookie",token)
                 .when()
-                .log().all()
                 .delete("booking/"+ idr);
-
 
     }
     @Step("Tentar excluir uma reserva nao existente")
@@ -30,7 +28,6 @@ public class DeleteBookingRequest {
                 .header("Accept", "application/json")
                 .header("Cookie",token)
                 .when()
-                .log().all()
                 .delete("booking/1000");
 
 
@@ -43,10 +40,7 @@ public class DeleteBookingRequest {
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .when()
-                .log().all()
                 .delete("booking/"+ idr);
-
-
     }
 
 }
