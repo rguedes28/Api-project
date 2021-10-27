@@ -5,10 +5,8 @@ C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restass
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\tests\booking\tests\PutBookingTest.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\suites\E2eTests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\tests\booking\requests\GetBookingRequest.java
-C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\suites\ContractTests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\suites\SecurityTests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\runners\AllTests.java
-C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\runners\ContractTests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\tests\booking\tests\DeleteBookingTest.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\suites\SmokeTests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\tests\auth\requests\PostAuthRequest.java
@@ -21,10 +19,12 @@ C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restass
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\utils\Utils.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\runners\SecurityTests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\runners\HealthcheckTests.java
+C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\runners\Schematests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\suites\AccptanceTests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\tests\booking\requests\PostBookingRequest.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\tests\booking\tests\PostBookingTest.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\base\BaseTest.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\suites\HealthcheckTests.java
+C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\suites\SchemaTests.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\tests\booking\requests\PutBookingRequest.java
 C:\Users\Rguedes\IdeaProjects\restassuredapitesting\src\test\java\br\com\restassuredapitesting\tests\booking\payloads\BookingPayloads.java

@@ -96,7 +96,7 @@ public class PutBookingTest extends BaseTest {
     @DisplayName("Tentar alterar uma reserva que nao existe")
     public void tentarAlterarUmaReservaQueNaoExiste() {
         int primeiroId = 98458;
-        putBookingRequest.upDateBookingBasicAuth(primeiroId)
+        putBookingRequest.upDateBookingToken(primeiroId,postAuthRequest.getToken())
                 .then()
                 .statusCode(404);
     }

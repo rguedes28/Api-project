@@ -44,7 +44,6 @@ public class DeleteBookingTest extends BaseTest {
 
                 .then()
                 .statusCode(404);
-
     }
 
     @Test

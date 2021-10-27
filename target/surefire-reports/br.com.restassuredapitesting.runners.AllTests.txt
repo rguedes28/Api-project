@@ -1,22 +1,22 @@
 -------------------------------------------------------------------------------
 Test set: br.com.restassuredapitesting.runners.AllTests
 -------------------------------------------------------------------------------
-Tests run: 26, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 50.057 s <<< FAILURE! - in br.com.restassuredapitesting.runners.AllTests
-tentarAlterarUmaReservaQueNaoExiste(br.com.restassuredapitesting.tests.booking.tests.PutBookingTest)  Time elapsed: 1.032 s  <<< FAILURE!
+Tests run: 26, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 50.605 s <<< FAILURE! - in br.com.restassuredapitesting.runners.AllTests
+tentarAlterarUmaReservaQueNaoExiste(br.com.restassuredapitesting.tests.booking.tests.PutBookingTest)  Time elapsed: 1.93 s  <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
 Expected status code <404> but was <405>.
 
 	at br.com.restassuredapitesting.tests.booking.tests.PutBookingTest.tentarAlterarUmaReservaQueNaoExiste(PutBookingTest.java:101)
 
-tentarExcluirUmaReservaQueNaoExisteComToken(br.com.restassuredapitesting.tests.booking.tests.DeleteBookingTest)  Time elapsed: 1.691 s  <<< FAILURE!
+tentarExcluirUmaReservaQueNaoExisteComToken(br.com.restassuredapitesting.tests.booking.tests.DeleteBookingTest)  Time elapsed: 1.779 s  <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
 Expected status code <404> but was <405>.
 
 	at br.com.restassuredapitesting.tests.booking.tests.DeleteBookingTest.tentarExcluirUmaReservaQueNaoExisteComToken(DeleteBookingTest.java:46)
 
-criarUmaReservaNovaComPayloadComMaisItens(br.com.restassuredapitesting.tests.booking.tests.PostBookingTest)  Time elapsed: 0.842 s  <<< FAILURE!
+criarUmaReservaNovaComPayloadComMaisItens(br.com.restassuredapitesting.tests.booking.tests.PostBookingTest)  Time elapsed: 0.89 s  <<< FAILURE!
 java.lang.AssertionError: 
 1 expectation failed.
 Expected status code <400> but was <200>.
